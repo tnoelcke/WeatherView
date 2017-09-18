@@ -5,34 +5,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace WebApplication1.Models.Tests
 {
     [TestClass()]
     public class weatherModelRunTests
     {
+
+        //[TestInitialize]
+        //public void setUp()
+        //{
+
+        //}
+
         [TestMethod()]
         public void weatherModelRunTest()
         {
-            throw new NotImplementedException();
+            WebClient client = new WebClient();
+            string weatherData = client.DownloadString("http://www.nws.noaa.gov/cgi-bin/mos/getmav.pl?sta=KPDX");
+            weatherModelRun test = new weatherModelRun(weatherData);
         }
 
         [TestMethod()]
         public void getAverageMaxTempTest()
         {
-            throw new NotImplementedException();
+            
         }
 
         [TestMethod()]
         public void getAverageMinTempTest()
         {
-            throw new NotImplementedException();
+            
         }
 
         [TestMethod()]
         public void getAverageTempTest()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

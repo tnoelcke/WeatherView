@@ -14,6 +14,7 @@ namespace WebApplication1.Models
         public int Hour { get; set; }
         //keeps track of the minimum or maximum temp in a 24 hour period
         //will be null most of the time.
+        bool isMax { get; set; }
         public int? MinOrMaxTemp { get; set; }
         //keeps track of the temp.
         public int Temp { get; set; }
@@ -37,6 +38,7 @@ namespace WebApplication1.Models
         //tracks the probibilty of frozen precip
         public int FreezingProbability { get; set; }
         
+
         /// <summary>
         /// This functino sets the cloud forcast such that the two letter code
         /// is displayed correctly.

@@ -51,8 +51,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Models\EnsemblesTests.cs" />
+    <Compile Include="Models\weatherModelFrameTests.cs" />
+    <Compile Include="Models\weatherModelRunTests.cs" />
+    <Compile Include="Models\weatherStationListTests.cs" />
+    <Compile Include="Models\weatherStationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApplication1\weatherView.csproj">
+      <Project>{EB1191D7-601D-4676-8F06-20893D4FBFAB}</Project>
+      <Name>weatherView</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

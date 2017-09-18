@@ -10,6 +10,8 @@ namespace WebApplication1.Models
     public class weatherModelRun
     {
         List<weatherModelFrame> Frames { get; set; }
+        public string Station { get; set; }
+        public string runInfo { get; set; }
         private double TotalPrecip { get; set; }
         private int MaxWind { get; set; }
         private double AverageTemp { get; set; }
@@ -82,6 +84,11 @@ namespace WebApplication1.Models
         /// <param name="run">takes a whole run from the NOAA site and initializes the data</param>
         private void setData(String run)
         {
+            string[] delimiter = { "<PRE>" };
+            string[]  data = run.Split(delimiter, System.StringSplitOptions.None);
+
+            Console.Write(data);
+
 
         }
 

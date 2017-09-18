@@ -14,7 +14,7 @@ namespace WebApplication1.Models.Tests
         [TestMethod()]
         public void weatherStationTest()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
