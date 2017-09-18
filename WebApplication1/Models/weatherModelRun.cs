@@ -23,10 +23,16 @@ namespace WebApplication1.Models
         /// Constructor with arguments that initializes the model.
         /// </summary>
         /// <param name="modelRun">Raw data from the HTML output from NOAA site</param>
-        public weatherModelRun(String modelRun)
+        public weatherModelRun(String modelRun, bool isShort)
         {
             Frames = new List<weatherModelFrame>();
-            setData(modelRun);
+            if (isShort)
+            {
+                setShortData(modelRun);
+            } else
+            {
+                setLongData(modelRun);
+            }
             maxWind();
             totalPrecip();
             averageTemp();
@@ -82,16 +88,43 @@ namespace WebApplication1.Models
         /// raw HTML data from NOAA site.
         /// </summary>
         /// <param name="run">takes a whole run from the NOAA site and initializes the data</param>
-        private void setData(String run)
+        private void setShortData(String run)
         {
             string[] delimiter = { "<PRE>" };
-            string[]  data = run.Split(delimiter, System.StringSplitOptions.None);
+            string[] data = run.Split(delimiter, System.StringSplitOptions.None);
+            char[] seperator = { '\n' };
+            string[] rowData = data[1].Split(seperator, System.StringSplitOptions.None);
+
+            char[] splitSpace = { ' ' };
+
+
+            string[] headerRow = rowData[1].Split(splitSpace, System.StringSplitOptions.RemoveEmptyEntries);
+            string[] dateRow = rowData[2].Split(splitSpace, System.StringSplitOptions.None);
+            string[] hourRow = rowData[3].Split(splitSpace, System.StringSplitOptions.None);
+            string[] lowHighRow = rowData[4].Split(splitSpace, System.StringSplitOptions.None);
+            string[] tempRow = rowData[5].Split(splitSpace);
+            string[] dewPointRow = rowData[6].Split(splitSpace);
+            string[] cloudRow = rowData[7].Split(splitSpace);
+            string[] windDirRow = rowData[8].Split(splitSpace);
+            string[] windSpeedRow = rowData[9].Split(splitSpace);
+            string[] precipProbSix = rowData[10].Split(splitSpace, System.StringSplitOptions.None);
+             
+
 
             Console.Write(data);
 
 
         }
 
+        /// <summary>
+        /// Sets the data for the long range GFSx model as it is different from the
+        /// MOS model runs.
+        /// </summary>
+        /// <param name="run">This string is the entire HTML page that represents the GFS run for the long term.</param>
+        private void setLongData(String run)
+        {
+
+        }
         public double getAverageMaxTemp()
         {
             return AverageMaxTemp;
