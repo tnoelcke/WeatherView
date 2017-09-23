@@ -9,12 +9,12 @@ namespace WebApplication1.Models
     {
         public const double KNOTS_TO_MPH = 1.1507;
         //keeps track of the day of the month
-        public string DayOfTheMonth { get; set; }
+        public string DayMonth { get; set; }
         //keeps track of the forcast hour
         public int Hour { get; set; }
         //keeps track of the minimum or maximum temp in a 24 hour period
         //will be null most of the time.
-        bool isMax { get; set; }
+        public bool isMax { get; set; }
         public int? MinOrMaxTemp { get; set; }
         //keeps track of the temp.
         public int Temp { get; set; }
@@ -32,12 +32,42 @@ namespace WebApplication1.Models
         //keeps track of the 6 hour probability of precip.
         public int? SixHourPrecipProbablity { get; set; }
         //keeps track of the six hour precip
-        public int? SixHourPrecip { get; set; }
+        public string SixHourPrecip { get; set; }
         //keeps track of the 24 hour snow fall.
         public int? SnowFall { get; set; }
         //tracks the probibilty of frozen precip
         public int FreezingProbability { get; set; }
+
+        private string precipType { get; set; }
+
         
+
+        
+        /// <summary>
+        /// This Function Takes a string that is used to determine the precip Type.
+        /// </summary>
+        /// <param name="type"> The precip type where it can be one of three letters</param>
+        public void setPrecipType(string type)
+        {
+            switch(type)
+            {
+                case "R":
+                    precipType = "Rain";
+                    break;
+                case "S":
+                    precipType = "Snow";
+                    break;
+                default:
+                    precipType = "Freezing Rain/mix";
+                    break;
+            }
+
+        }
+
+        public string getPrecipType()
+        {
+            return precipType;
+        }
 
         /// <summary>
         /// This functino sets the cloud forcast such that the two letter code
@@ -47,7 +77,6 @@ namespace WebApplication1.Models
         /// This is the two letter code that comes from the text out put of the
         /// GFS model.
         /// </param>
-
         public void setCloudForcast(string toSet)
         {
             if(toSet.ToUpper().Equals("CL"))
@@ -183,6 +212,37 @@ namespace WebApplication1.Models
         public int getWindSpeed()
         {
             return WindSpeed;
+        }
+
+        public void setPrecipAmount(string amount)
+        {
+            int precipAmount;
+            Int32.TryParse(amount, out precipAmount);
+            switch (precipAmount)
+            {
+                case 1:
+                    SixHourPrecip = "0.01 to 0.09";
+                    break;
+                case 2:
+                    SixHourPrecip = "0.10 to 0.24";
+                    break;
+                case 3:
+                    SixHourPrecip = "0.25 to 0.49";
+                    break;
+                case 4:
+                    SixHourPrecip = "0.50 to 0.99";
+                    break;
+                case 5:
+                    SixHourPrecip = "1.00 to 1.99";
+                    break;
+                case 6:
+                    SixHourPrecip = "2.00 Or Greater";
+                    break;
+                default:
+                    SixHourPrecip = "0";
+                    break;
+
+            }
         }
     }
 }

@@ -90,14 +90,16 @@ namespace WebApplication1.Models
         /// <param name="run">takes a whole run from the NOAA site and initializes the data</param>
         private void setShortData(String run)
         {
+            //doing some string processing to get just the data out of the raw HTML file.
             string[] delimiter = { "<PRE>" };
             string[] data = run.Split(delimiter, System.StringSplitOptions.None);
             char[] seperator = { '\n' };
             string[] rowData = data[1].Split(seperator, System.StringSplitOptions.None);
-
             char[] splitSpace = { ' ' };
+            char[] splitBackSlash = { '/' };
 
 
+            //getting each row of the data that we care about.
             string[] headerRow = rowData[1].Split(splitSpace, System.StringSplitOptions.RemoveEmptyEntries);
             string[] dateRow = rowData[2].Split(splitSpace, System.StringSplitOptions.None);
             string[] hourRow = rowData[3].Split(splitSpace, System.StringSplitOptions.None);
@@ -107,13 +109,62 @@ namespace WebApplication1.Models
             string[] cloudRow = rowData[7].Split(splitSpace);
             string[] windDirRow = rowData[8].Split(splitSpace);
             string[] windSpeedRow = rowData[9].Split(splitSpace);
-            string[] precipProbSix = rowData[10].Split(splitSpace, System.StringSplitOptions.None);
-             
+            string[] precipProbSixRow = rowData[10].Split(splitSpace, System.StringSplitOptions.None);
+            string[] precipQuanitySixRow = rowData[12].Split(splitSpace, StringSplitOptions.None);
+            string[] preciptTypeRow = rowData[18].Split(splitSpace, StringSplitOptions.None);
+            string[] snowFallRow = rowData[19].Split(splitSpace, System.StringSplitOptions.None);
+
+            weatherModelFrame toAdd;
+
+            int maxMinIndex = 1;
+            int hourData = 0;
+            int currentDate = 1;
+           
+            
+            
+            //do some processing for the data in the header.
 
 
-            Console.Write(data);
+            //processing the data and placing it in the correct paramaters in the model.
+            for(int i = 0; i < hourRow.Length; i++)
+            {
+                //each valid frame will have an hour out put that will parse.
+                //This ensures that we dont end up with frames that don't make sense like
+                //Like the column with all the headers in it.
+                if (Int32.TryParse(hourRow[i], out hourData))
+                {
+                    toAdd = new weatherModelFrame();
+                    toAdd.Hour = hourData;
+                    if (hourData == 0)
+                    {
+                        currentDate++;
+                    }
+                    toAdd.DayMonth = dateRow[currentDate];
+                    if(toAdd.Hour == 12)
+                    {
+                        int minTemp;
+                        toAdd.isMax = false;
+                        Int32.TryParse(lowHighRow[maxMinIndex], out minTemp);
+                        toAdd.MinOrMaxTemp = minTemp;
+                        maxMinIndex++;
+                    } else if (toAdd.Hour == 0)
+                    {
+                        int maxTemp;
+                        toAdd.isMax = true;
+                        Int32.TryParse(lowHighRow[maxMinIndex], out maxTemp);
 
 
+                    }
+                        
+                }
+
+
+
+
+
+
+            }
+            
         }
 
         /// <summary>

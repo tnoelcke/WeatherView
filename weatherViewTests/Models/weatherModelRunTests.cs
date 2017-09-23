@@ -24,7 +24,7 @@ namespace WebApplication1.Models.Tests
         {
             WebClient client = new WebClient();
             string weatherData = client.DownloadString("http://www.nws.noaa.gov/cgi-bin/mos/getmav.pl?sta=KPDX");
-            weatherModelRun test = new weatherModelRun(weatherData);
+            weatherModelRun test = new weatherModelRun(weatherData, true);
         }
 
         [TestMethod()]
