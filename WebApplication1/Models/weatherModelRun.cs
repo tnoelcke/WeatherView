@@ -116,9 +116,12 @@ namespace WebApplication1.Models
 
             weatherModelFrame toAdd;
 
+            //data that needs to be parsed and added to the model.
             int maxMinIndex = 1;
             int hourData = 0;
             int currentDate = 1;
+            int tempData;
+            int dewPointData;
            
             
             
@@ -135,26 +138,44 @@ namespace WebApplication1.Models
                 {
                     toAdd = new weatherModelFrame();
                     toAdd.Hour = hourData;
+
+                    //parses the temperature data.
+                    Int32.TryParse(tempRow[i], out tempData);
+                    toAdd.Temp = tempData;
+
+                    //parses dew point data
+                    Int32.TryParse(dewPointRow[i], out dewPointData);
+                    toAdd.Dewpoint = dewPointData;
+
+                    //parses Cloud Cover.
+                    toAdd.setCloudForcast(cloudRow[i]);
+
+                    
+
                     if (hourData == 0)
                     {
                         currentDate++;
                     }
                     toAdd.DayMonth = dateRow[currentDate];
-                    if(toAdd.Hour == 12)
+                    if(toAdd.Hour == 12 && i > 4)
                     {
                         int minTemp;
                         toAdd.isMax = false;
                         Int32.TryParse(lowHighRow[maxMinIndex], out minTemp);
                         toAdd.MinOrMaxTemp = minTemp;
                         maxMinIndex++;
-                    } else if (toAdd.Hour == 0)
+                    } else if (toAdd.Hour == 0 && i > 4)
                     {
                         int maxTemp;
                         toAdd.isMax = true;
                         Int32.TryParse(lowHighRow[maxMinIndex], out maxTemp);
 
-
+                    } else
+                    {
+                        toAdd.MinOrMaxTemp = null;
                     }
+
+                    
                         
                 }
 
