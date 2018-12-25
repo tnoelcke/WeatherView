@@ -6,4 +6,10 @@
 
 ## Description
 
-Given that the data changes often and not at predicable intervals I will also have a data maintainer service that will independently check and update the data if there is more up to date data. This will also be a flask API. Essentially, the API will make requests to this api to check that the data is up to date. If it is not than the maintainer will send the data is currently has along with a note that more up to date info will be available shortly. It will then download the data and replace the current out of date data. This is likely to be the largest technical challenge on this project.
+This service will maintain the data in this system. This part of the system will be responsible for downloading and checking that the current data is the most up to date. This part of the system will reach out to the various data sources every 30 mins and ensure that the curret data is the most up to date. If the data is out of date this service will pull the data from its source and will replace the current data set. I don't aticipate that this will be a large technical challange given that this is essentially just a really fancy chron job.
+
+## Data Sources
+
+ECMWF - Operational (10 day) and ENS ftp://wmo:essential@dissemination.ecmwf.int/
+GFS -
+NAM -  
