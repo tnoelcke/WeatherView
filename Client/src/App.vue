@@ -1,7 +1,14 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <router-link to="/foo"> Go to Foo</router-link>
+    <router-link to="/bar"> Go to Bar</router-link>
   </div>
 </template>
 
