@@ -4,7 +4,8 @@
   "description": "This the SPA client view for the weather view application. This application will allow the users to view weather data as raw output as well as charts for the ensembles.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./webpack.config.dev.js"
   },
   "author": "Thomas Noelcke",
   "license": "ISC",
@@ -13,6 +14,10 @@
     "vue-router": "^3.0.2"
   },
   "devDependencies": {
+    "css-loader": "^2.1.0",
+    "vue-loader": "^15.6.4",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.6",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   }
