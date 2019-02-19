@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config ./webpack.config.dev.js"
+    "build": "webpack --config ./webpack.config.dev.js",
+    "dev": "webpack-dev-server --config ./webpack.config.dev.js"
   },
   "author": "Thomas Noelcke",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.6",
     "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   }
 }
