@@ -11,5 +11,7 @@ This service will maintain the data in this system. This part of the system will
 ## Data Sources
 
 ECMWF - Operational (10 day) and ENS ftp://wmo:essential@dissemination.ecmwf.int/
-GFS -
-NAM -  
+GFS - Operational (10 Day) ftp://nomads.ncdc.noaa.gov/GFS/Grid4/
+File Format - 
+GFS Ensemble - ftp://nomads.ncdc.noaa.gov/GENS/
+NAM - ftp://nomads.ncdc.noaa.gov/NAM/Grid218/
