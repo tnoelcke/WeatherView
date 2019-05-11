@@ -6,7 +6,7 @@
 
 ## Description
 
-This service will maintain the data in this system. This part of the system will be responsible for downloading and checking that the current data is the most up to date. This part of the system will reach out to the various data sources every 30 mins and ensure that the curret data is the most up to date. If the data is out of date this service will pull the data from its source and will replace the current data set. I don't aticipate that this will be a large technical challange given that this is essentially just a really fancy chron job.
+This service will maintain the data in this system. This part of the system will be responsible for downloading and checking that the current data is the most up to date. This part of the system will reach out to the various data sources every 30 mins and ensure that the current data is the most up to date. If the data is out of date this service will pull the data from its source and will replace the current data set. I don't anticipate that this will be a large technical challenge given that this is essentially just a really fancy cron job.
 
 ## Data Sources
 
